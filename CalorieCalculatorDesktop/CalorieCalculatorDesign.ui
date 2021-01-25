@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>991</width>
-    <height>800</height>
+    <width>1001</width>
+    <height>851</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>0</y>
-      <width>991</width>
+      <y>10</y>
+      <width>1001</width>
       <height>61</height>
      </rect>
     </property>
@@ -51,32 +51,32 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>130</y>
+      <y>160</y>
       <width>401</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>14</pointsize>
+      <pointsize>17</pointsize>
      </font>
     </property>
     <property name="text">
-     <string>Dziennie zapotrzebowanie kalorii wynosi [kcal]: </string>
+     <string>Zapotrzebowanie kalorii wynosi [kcal]: </string>
     </property>
    </widget>
    <widget class="QLabel" name="labelWegl">
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>170</y>
-      <width>331</width>
+      <y>200</y>
+      <width>401</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>14</pointsize>
+      <pointsize>17</pointsize>
      </font>
     </property>
     <property name="text">
@@ -87,14 +87,14 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>210</y>
-      <width>241</width>
+      <y>240</y>
+      <width>381</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>14</pointsize>
+      <pointsize>17</pointsize>
      </font>
     </property>
     <property name="text">
@@ -105,14 +105,14 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>250</y>
-      <width>251</width>
+      <y>280</y>
+      <width>351</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>14</pointsize>
+      <pointsize>17</pointsize>
      </font>
     </property>
     <property name="text">
@@ -122,80 +122,92 @@
    <widget class="QLabel" name="valueKcal">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>130</y>
+      <x>420</x>
+      <y>160</y>
       <width>71</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>12</pointsize>
+      <pointsize>15</pointsize>
      </font>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>123456</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="valueWegl">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>170</y>
+      <x>420</x>
+      <y>200</y>
       <width>71</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>12</pointsize>
+      <pointsize>15</pointsize>
      </font>
     </property>
     <property name="text">
      <string>TextLabel</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="valueBia">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>210</y>
+      <x>420</x>
+      <y>240</y>
       <width>71</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>12</pointsize>
+      <pointsize>15</pointsize>
      </font>
     </property>
     <property name="text">
      <string>TextLabel</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="valueTlu">
     <property name="geometry">
      <rect>
-      <x>290</x>
-      <y>250</y>
+      <x>420</x>
+      <y>280</y>
       <width>71</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>12</pointsize>
+      <pointsize>15</pointsize>
      </font>
     </property>
     <property name="text">
      <string>TextLabel</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QScrollArea" name="scrollAreaProducts">
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>350</y>
+      <y>390</y>
       <width>421</width>
       <height>431</height>
      </rect>
@@ -227,8 +239,8 @@
    <widget class="QScrollArea" name="scrollAreaSelectedProducts">
     <property name="geometry">
      <rect>
-      <x>540</x>
-      <y>350</y>
+      <x>550</x>
+      <y>390</y>
       <width>421</width>
       <height>431</height>
      </rect>
@@ -261,7 +273,7 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>290</y>
+      <y>330</y>
       <width>205</width>
       <height>41</height>
      </rect>
@@ -275,9 +287,9 @@
    <widget class="QProgressBar" name="progressKcal">
     <property name="geometry">
      <rect>
-      <x>540</x>
-      <y>130</y>
-      <width>371</width>
+      <x>590</x>
+      <y>160</y>
+      <width>381</width>
       <height>31</height>
      </rect>
     </property>
@@ -285,7 +297,7 @@
      <number>24</number>
     </property>
     <property name="textVisible">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="textDirection">
      <enum>QProgressBar::TopToBottom</enum>
@@ -297,9 +309,9 @@
    <widget class="QProgressBar" name="progressWegl">
     <property name="geometry">
      <rect>
-      <x>540</x>
-      <y>170</y>
-      <width>371</width>
+      <x>590</x>
+      <y>200</y>
+      <width>381</width>
       <height>31</height>
      </rect>
     </property>
@@ -307,7 +319,7 @@
      <number>24</number>
     </property>
     <property name="textVisible">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="textDirection">
      <enum>QProgressBar::TopToBottom</enum>
@@ -319,9 +331,9 @@
    <widget class="QProgressBar" name="progressBia">
     <property name="geometry">
      <rect>
-      <x>540</x>
-      <y>210</y>
-      <width>371</width>
+      <x>590</x>
+      <y>240</y>
+      <width>381</width>
       <height>31</height>
      </rect>
     </property>
@@ -329,7 +341,7 @@
      <number>24</number>
     </property>
     <property name="textVisible">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="textDirection">
      <enum>QProgressBar::TopToBottom</enum>
@@ -341,9 +353,9 @@
    <widget class="QProgressBar" name="progressTlu">
     <property name="geometry">
      <rect>
-      <x>540</x>
-      <y>250</y>
-      <width>371</width>
+      <x>590</x>
+      <y>280</y>
+      <width>381</width>
       <height>31</height>
      </rect>
     </property>
@@ -351,7 +363,7 @@
      <number>24</number>
     </property>
     <property name="textVisible">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="invertedAppearance">
      <bool>false</bool>
@@ -368,7 +380,7 @@
      <rect>
       <x>380</x>
       <y>70</y>
-      <width>235</width>
+      <width>241</width>
       <height>36</height>
      </rect>
     </property>
@@ -387,76 +399,213 @@
      <string>Wprowadź swoje dane</string>
     </property>
    </widget>
-   <widget class="QLabel" name="valueKcal_2">
+   <widget class="QLabel" name="valueActualKcal">
     <property name="geometry">
      <rect>
-      <x>920</x>
+      <x>510</x>
+      <y>160</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>123456</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="valueActualWegl">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>200</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="valueActualTlu">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>280</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="valueActualBia">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>240</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="buttonNewProduct">
+    <property name="geometry">
+     <rect>
+      <x>770</x>
+      <y>330</y>
+      <width>201</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Dodaj nowy produkt</string>
+    </property>
+   </widget>
+   <widget class="Line" name="line">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>160</y>
+      <width>20</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="Line" name="line_2">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>200</y>
+      <width>21</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="Line" name="line_3">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>240</y>
+      <width>21</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="Line" name="line_4">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>280</y>
+      <width>21</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelMax">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
       <y>130</y>
-      <width>31</width>
-      <height>31</height>
+      <width>81</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>9</pointsize>
+      <pointsize>12</pointsize>
      </font>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>Maks</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="valueKcal_3">
+   <widget class="QLabel" name="labelActual">
     <property name="geometry">
      <rect>
-      <x>920</x>
-      <y>170</y>
-      <width>31</width>
-      <height>31</height>
+      <x>500</x>
+      <y>130</y>
+      <width>81</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>9</pointsize>
+      <pointsize>12</pointsize>
      </font>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>Aktualnie</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="valueKcal_4">
+   <widget class="Line" name="line_5">
     <property name="geometry">
      <rect>
-      <x>920</x>
-      <y>210</y>
-      <width>31</width>
-      <height>31</height>
+      <x>420</x>
+      <y>150</y>
+      <width>161</width>
+      <height>16</height>
      </rect>
     </property>
-    <property name="font">
-     <font>
-      <pointsize>9</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>TextLabel</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="valueKcal_5">
-    <property name="geometry">
-     <rect>
-      <x>920</x>
-      <y>250</y>
-      <width>31</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>9</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>TextLabel</string>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
     </property>
    </widget>
   </widget>

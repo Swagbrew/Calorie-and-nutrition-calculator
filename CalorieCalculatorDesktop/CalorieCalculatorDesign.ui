@@ -224,14 +224,20 @@
        <height>429</height>
       </rect>
      </property>
-     <widget class="QTableWidget" name="tableWidgetProducts">
+     <widget class="QTableView" name="tableViewProducts">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
         <width>421</width>
-        <height>481</height>
+        <height>431</height>
        </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="MinimumExpanding" vsizetype="Maximum">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
       </property>
      </widget>
     </widget>
@@ -257,13 +263,13 @@
        <height>429</height>
       </rect>
      </property>
-     <widget class="QTableWidget" name="tableWidgetSelectedProducts">
+     <widget class="QTableView" name="tableViewSelectedProducts">
       <property name="geometry">
        <rect>
-        <x>-1</x>
+        <x>0</x>
         <y>0</y>
-        <width>431</width>
-        <height>481</height>
+        <width>421</width>
+        <height>431</height>
        </rect>
       </property>
      </widget>

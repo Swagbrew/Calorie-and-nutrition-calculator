@@ -11,9 +11,37 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 import pandas as pd
+from PyQt5.QtCore import Qt
 
 
-class Ui_MainWindow(object):
+class TableModel(QtCore.QAbstractTableModel):
+
+    def __init__(self, data):
+        super(TableModel, self).__init__()
+        self._data = data
+
+    def data(self, index, role):
+        if role == Qt.DisplayRole:
+            value = self._data.iloc[index.row(), index.column()]
+            return str(value)
+
+    def rowCount(self, index):
+        return self._data.shape[0]
+
+    def columnCount(self, index):
+        return self._data.shape[1]
+
+    def headerData(self, section, orientation, role):
+        # section is the index of the column/row.
+        if role == Qt.DisplayRole:
+            if orientation == Qt.Horizontal:
+                return str(self._data.columns[section])
+
+            if orientation == Qt.Vertical:
+                return str(self._data.index[section])
+
+
+class ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1001, 851)
@@ -89,11 +117,14 @@ class Ui_MainWindow(object):
         self.scrollAreaProducts_2 = QtWidgets.QWidget()
         self.scrollAreaProducts_2.setGeometry(QtCore.QRect(0, 0, 419, 429))
         self.scrollAreaProducts_2.setObjectName("scrollAreaProducts_2")
-        self.tableWidgetProducts = QtWidgets.QTableWidget(self.scrollAreaProducts_2)
-        self.tableWidgetProducts.setGeometry(QtCore.QRect(0, 0, 421, 481))
-        self.tableWidgetProducts.setObjectName("tableWidgetProducts")
-        self.tableWidgetProducts.setColumnCount(0)
-        self.tableWidgetProducts.setRowCount(0)
+        self.tableViewProducts = QtWidgets.QTableView(self.scrollAreaProducts_2)
+        self.tableViewProducts.setGeometry(QtCore.QRect(0, 0, 421, 431))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.tableViewProducts.sizePolicy().hasHeightForWidth())
+        self.tableViewProducts.setSizePolicy(sizePolicy)
+        self.tableViewProducts.setObjectName("tableViewProducts")
         self.scrollAreaProducts.setWidget(self.scrollAreaProducts_2)
         self.scrollAreaSelectedProducts = QtWidgets.QScrollArea(self.centralwidget)
         self.scrollAreaSelectedProducts.setGeometry(QtCore.QRect(550, 390, 421, 431))
@@ -102,11 +133,9 @@ class Ui_MainWindow(object):
         self.scrollAreaSelectedProducts_2 = QtWidgets.QWidget()
         self.scrollAreaSelectedProducts_2.setGeometry(QtCore.QRect(0, 0, 419, 429))
         self.scrollAreaSelectedProducts_2.setObjectName("scrollAreaSelectedProducts_2")
-        self.tableWidgetSelectedProducts = QtWidgets.QTableWidget(self.scrollAreaSelectedProducts_2)
-        self.tableWidgetSelectedProducts.setGeometry(QtCore.QRect(-1, 0, 431, 481))
-        self.tableWidgetSelectedProducts.setObjectName("tableWidgetSelectedProducts")
-        self.tableWidgetSelectedProducts.setColumnCount(0)
-        self.tableWidgetSelectedProducts.setRowCount(0)
+        self.tableViewSelectedProducts = QtWidgets.QTableView(self.scrollAreaSelectedProducts_2)
+        self.tableViewSelectedProducts.setGeometry(QtCore.QRect(0, 0, 421, 431))
+        self.tableViewSelectedProducts.setObjectName("tableViewSelectedProducts")
         self.scrollAreaSelectedProducts.setWidget(self.scrollAreaSelectedProducts_2)
         self.comboTypes = QtWidgets.QComboBox(self.centralwidget)
         self.comboTypes.setGeometry(QtCore.QRect(30, 330, 205, 41))
@@ -252,20 +281,20 @@ class Ui_MainWindow(object):
         self.buttonNewProduct.setText(_translate("MainWindow", "Dodaj nowy produkt"))
         self.labelMax.setText(_translate("MainWindow", "Maks"))
         self.labelActual.setText(_translate("MainWindow", "Aktualnie"))
+        model = TableModel(dfAlkohole)
+        model2 = TableModel(dfProdukty)
+        self.tableViewProducts.setModel(model)
+        self.tableViewSelectedProducts.setModel(model2)
+
 
 def parseCsv(filename):
     df = pd.read_csv(filename, sep=';')
-    print(df)
     return df
 
 
 if __name__ == "__main__":
     import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
+
     dfAlkohole = parseCsv('Alkohole.csv')
     dfBakalie = parseCsv('Bakalie.csv')
     dfBurgerKing = parseCsv('Burger King.csv')
@@ -286,6 +315,12 @@ if __name__ == "__main__":
     dfTluszcze = parseCsv('Tłuszcze.csv')
     dfWarzywa = parseCsv('Warzywa.csv')
     dfWedliny = parseCsv('Wędliny.csv')
+    dfProdukty = pd.DataFrame([], columns=['Produkt', 'Kalorie [kcal]', 'Białko [g]', 'Tłuszcz [g]', 'Węglowodany [g]',
+                                           'Waga [g]'])
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+
     sys.exit(app.exec_())
-
-

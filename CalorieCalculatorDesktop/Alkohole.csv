@@ -1,10 +1,10 @@
 ﻿Produkt;Kaloryczność [kcal];Białko [g];Tłuszcz [g];Węglowodany [g]
 Likiery (ok. 30 procentowe);166;0;0;30
 Piwo ciemne, 10%;37;0.3;0;4.3
-Piwo jasne, 10 %;38;0.3;0;4
+Piwo jasne, 10%;38;0.3;0;4
 Piwo jasne, ciemne 12%;45;0.4;0;5.3
 Piwo lekkie (niedofermentowane);27;0.4;0;2
-Piwo leżakowane (pełne); jasne;43;0.5;0;2.8
+Piwo leżakowane (pełne), jasne;43;0.5;0;2.8
 Piwo leżakowane, pilzneńskie;43;0.5;0;3.1
 Piwo pełne;49;0.5;0;3.8
 Piwo kolońskie;42;0.4;0;0
@@ -20,6 +20,6 @@ Wino białe, słodkie;95;0.2;0;5.9
 Wino białe, wytrawne;66;0.1;0;0.6
 Wino czerwone;68;0.1;0;0.2
 Wino deserowe;160;0.1;0;15
-Wino musujące; białe;83;0.1;0;5
+Wino musujące, białe;83;0.1;0;5
 Wino owocowe;74;0;0;5
 Wódki – średnio;220;0;0;0

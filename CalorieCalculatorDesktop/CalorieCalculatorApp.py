@@ -10,6 +10,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+import pandas as pd
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -251,6 +253,11 @@ class Ui_MainWindow(object):
         self.labelMax.setText(_translate("MainWindow", "Maks"))
         self.labelActual.setText(_translate("MainWindow", "Aktualnie"))
 
+def parseCsv(filename):
+    df = pd.read_csv(filename, sep=';')
+    print(df)
+    return df
+
 
 if __name__ == "__main__":
     import sys
@@ -259,4 +266,26 @@ if __name__ == "__main__":
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
+    dfAlkohole = parseCsv('Alkohole.csv')
+    dfBakalie = parseCsv('Bakalie.csv')
+    dfBurgerKing = parseCsv('Burger King.csv')
+    dfDrob = parseCsv('Drób.csv')
+    dfGrzyby = parseCsv('Grzyby.csv')
+    dfInne = parseCsv('Inne.csv')
+    dfKFC = parseCsv('KFC.csv')
+    dfMcDonald = parseCsv('McDonald.csv')
+    dfMieso = parseCsv('Mięso.csv')
+    dfNabial = parseCsv('Nabiał.csv')
+    dfNapoje = parseCsv('Napoje.csv')
+    dfOwoce = parseCsv('Owoce.csv')
+    dfPizzaHut = parseCsv('Pizza Hut.csv')
+    dfProZbo = parseCsv('Produkty zbożowe.csv')
+    dfPrzyprawy = parseCsv('Przyprawy.csv')
+    dfRyby = parseCsv('Ryby.csv')
+    dfSlodycze = parseCsv('Słodycze.csv')
+    dfTluszcze = parseCsv('Tłuszcze.csv')
+    dfWarzywa = parseCsv('Warzywa.csv')
+    dfWedliny = parseCsv('Wędliny.csv')
     sys.exit(app.exec_())
+
+

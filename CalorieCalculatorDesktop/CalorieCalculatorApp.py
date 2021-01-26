@@ -54,6 +54,8 @@ class ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1001, 851)
+        MainWindow.setFixedHeight(851)
+        MainWindow.setFixedWidth(1001)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.header = QtWidgets.QLabel(self.centralwidget)
@@ -294,7 +296,7 @@ class ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Calorie Calculator"))
         self.header.setText(_translate("MainWindow", "Kalkulator kalorii i wartości odżywczych"))
         self.labelKcal.setText(_translate("MainWindow", "Zapotrzebowanie kalorii wynosi [kcal]: "))
         self.labelWegl.setText(_translate("MainWindow", "Zapotrzebowanie węglowodanów [g]: "))
@@ -476,9 +478,9 @@ if __name__ == "__main__":
     import sys
 
     app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
+    CalorieCalculator = QtWidgets.QMainWindow()
     ui = ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
+    ui.setupUi(CalorieCalculator)
+    CalorieCalculator.show()
 
     sys.exit(app.exec_())

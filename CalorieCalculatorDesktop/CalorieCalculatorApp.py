@@ -9,8 +9,8 @@
 
 import pandas as pd
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtCore import Qt, pyqtSlot
-from PyQt5.QtWidgets import QDialog, QLineEdit, QWidget, QTableView, QTableWidgetItem
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QWidget, QTableWidgetItem
 
 
 class TableModel(QtCore.QAbstractTableModel):
@@ -460,10 +460,8 @@ class ui_MainWindow(object):
     def deleteProduct(self):
         row = self.tableWidgetSelectedProducts.currentRow()
         self.tableWidgetSelectedProducts.removeRow(row)
-        self.tableWidgetSelectedProducts.setRowCount(self.tableWidgetSelectedProducts.rowCount() - 1)
         self.tableWidgetSelectedProducts.update()
         self.calculateNutrition()
-
 
 
 def parseCsv(filename):

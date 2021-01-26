@@ -151,6 +151,10 @@ class ui_MainWindow(object):
         self.scrollAreaSelectedProducts_2.setObjectName("scrollAreaSelectedProducts_2")
         self.tableWidgetSelectedProducts = QtWidgets.QTableWidget(self.scrollAreaSelectedProducts_2)
         self.tableWidgetSelectedProducts.setGeometry(QtCore.QRect(0, 0, 421, 431))
+        self.tableWidgetSelectedProducts.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        self.tableWidgetSelectedProducts.setDragDropOverwriteMode(False)
+        self.tableWidgetSelectedProducts.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
+        self.tableWidgetSelectedProducts.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
         self.tableWidgetSelectedProducts.setObjectName("tableWidgetSelectedProducts")
         self.tableWidgetSelectedProducts.setColumnCount(0)
         self.tableWidgetSelectedProducts.setRowCount(0)
@@ -231,12 +235,13 @@ class ui_MainWindow(object):
         self.valueActualBia.setFont(font)
         self.valueActualBia.setAlignment(QtCore.Qt.AlignCenter)
         self.valueActualBia.setObjectName("valueActualBia")
-        self.buttonNewProduct = QtWidgets.QPushButton(self.centralwidget)
-        self.buttonNewProduct.setGeometry(QtCore.QRect(770, 330, 201, 41))
+        self.buttonDelete = QtWidgets.QPushButton(self.centralwidget)
+        self.buttonDelete.setGeometry(QtCore.QRect(770, 330, 201, 41))
         font = QtGui.QFont()
         font.setPointSize(12)
-        self.buttonNewProduct.setFont(font)
-        self.buttonNewProduct.setObjectName("buttonNewProduct")
+        self.buttonDelete.setFont(font)
+        self.buttonDelete.setObjectName("buttonDelete")
+        self.buttonDelete.clicked.connect(self.deleteProduct)
         self.line = QtWidgets.QFrame(self.centralwidget)
         self.line.setGeometry(QtCore.QRect(490, 160, 20, 31))
         self.line.setFrameShape(QtWidgets.QFrame.VLine)
@@ -308,7 +313,7 @@ class ui_MainWindow(object):
         self.valueActualWegl.setText(_translate("MainWindow", "0"))
         self.valueActualTlu.setText(_translate("MainWindow", "0"))
         self.valueActualBia.setText(_translate("MainWindow", "0"))
-        self.buttonNewProduct.setText(_translate("MainWindow", "Dodaj nowy produkt"))
+        self.buttonDelete.setText(_translate("MainWindow", "Usuń"))
         self.labelMax.setText(_translate("MainWindow", "Maks"))
         self.labelActual.setText(_translate("MainWindow", "Aktualnie"))
         self.loadData('Alkohole')
@@ -331,11 +336,6 @@ class ui_MainWindow(object):
         activity = ['Bardzo niska', 'Niska', 'Umiarkowana', 'Wysoka', 'Sportowiec zawodowy']
         self.userActivity, done5 = QtWidgets.QInputDialog.getItem(
             Dialog, 'Aktywność', 'Jaka jest twoja aktywność?: ', activity)
-
-        print(self.userAge)
-        print(self.userWeight)
-        print(self.userHeight)
-        print(self.userActivity)
 
         if self.userActivity == 'Bardzo niska':
             self.userActivity = 1.2
@@ -404,12 +404,9 @@ class ui_MainWindow(object):
         grams, done = QtWidgets.QInputDialog.getInt(
             Dialog, 'Waga produktu', 'Podaj ile gramów produktu chcesz dodać: ')
         row = self.tableWidgetProducts.currentRow()
-        print(row)
-        print(self.tableWidgetProducts.item(row, 0).text())
 
         self.tableWidgetSelectedProducts.setRowCount(self.tableWidgetSelectedProducts.rowCount()+1)
         for i in range(5):
-            print(self.tableWidgetProducts.item(row, i).text())
             self.tableWidgetSelectedProducts.setItem(self.tableWidgetSelectedProducts.rowCount()-1, i, QTableWidgetItem(self.tableWidgetProducts.item(row, i).text()))
         self.tableWidgetSelectedProducts.setItem(self.tableWidgetSelectedProducts.rowCount()-1, 5, QTableWidgetItem(str(grams)))
         self.tableWidgetSelectedProducts.resizeColumnsToContents()
@@ -457,6 +454,14 @@ class ui_MainWindow(object):
 
         else:
             self.progressBia.setValue(int(calculatedProteins))
+
+    def deleteProduct(self):
+        row = self.tableWidgetSelectedProducts.currentRow()
+        self.tableWidgetSelectedProducts.removeRow(row)
+        self.tableWidgetSelectedProducts.setRowCount(self.tableWidgetSelectedProducts.rowCount() - 1)
+        self.tableWidgetSelectedProducts.update()
+        self.calculateNutrition()
+
 
 
 def parseCsv(filename):

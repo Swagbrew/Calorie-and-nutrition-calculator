@@ -277,6 +277,12 @@ class ui_MainWindow(object):
         self.line_5.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_5.setObjectName("line_5")
         MainWindow.setCentralWidget(self.centralwidget)
+        self.tableWidgetSelectedProducts.setColumnCount(len(dfProdukty.columns))
+        self.tableWidgetSelectedProducts.setRowCount(len(dfProdukty.index))
+        self.tableWidgetSelectedProducts.setHorizontalHeaderLabels(
+            ['Produkt', 'Kalorie [kcal]', 'Białko [g]', 'Tłuszcz [g]', 'Węglowodany [g]', 'Waga [g]'])
+        self.tableWidgetProducts.resizeColumnsToContents()
+        self.tableWidgetProducts.resizeRowsToContents()
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -392,6 +398,41 @@ class ui_MainWindow(object):
             ['Produkt', 'Kalorie [kcal]', 'Białko [g]', 'Tłuszcz [g]', 'Węglowodany [g]'])
         self.tableWidgetProducts.resizeColumnsToContents()
         self.tableWidgetProducts.resizeRowsToContents()
+
+    def productsDoubleClicked(self):
+        Dialog = QWidget()
+        grams, done = QtWidgets.QInputDialog.getInt(
+            Dialog, 'Waga produktu', 'Podaj ile gramów produktu chcesz dodać: ')
+        row = self.tableWidgetProducts.currentRow()
+        print(row)
+        print(self.tableWidgetProducts.item(row, 0).text())
+
+        self.tableWidgetSelectedProducts.setRowCount(self.tableWidgetSelectedProducts.rowCount()+1)
+        for i in range(5):
+            print(self.tableWidgetProducts.item(row, i).text())
+            self.tableWidgetSelectedProducts.setItem(self.tableWidgetSelectedProducts.rowCount()-1, i, QTableWidgetItem(self.tableWidgetProducts.item(row, i).text()))
+        self.tableWidgetSelectedProducts.setItem(self.tableWidgetSelectedProducts.rowCount()-1, 5, QTableWidgetItem(str(grams)))
+        self.tableWidgetSelectedProducts.resizeColumnsToContents()
+        self.tableWidgetSelectedProducts.resizeRowsToContents()
+        self.tableWidgetSelectedProducts.update()
+        self.calculateNutrition()
+
+    def calculateNutrition(self):
+        calculatedCalories = 0
+        calculatedCarbs = 0
+        calculatedFats = 0
+        calculatedProteins = 0
+
+        for i in range(self.tableWidgetSelectedProducts.rowCount()):
+            calculatedCalories += ((float(self.tableWidgetSelectedProducts.item(i, 1).text())/100)*float(self.tableWidgetSelectedProducts.item(i, 5).text()))
+            calculatedProteins += ((float(self.tableWidgetSelectedProducts.item(i, 2).text())/100)*float(self.tableWidgetSelectedProducts.item(i, 5).text()))
+            calculatedFats += ((float(self.tableWidgetSelectedProducts.item(i, 3).text())/100)*float(self.tableWidgetSelectedProducts.item(i, 5).text()))
+            calculatedCarbs += ((float(self.tableWidgetSelectedProducts.item(i, 4).text())/100)*float(self.tableWidgetSelectedProducts.item(i, 5).text()))
+
+        self.valueActualKcal.setText(str(int(calculatedCalories)))
+        self.valueActualBia.setText(str(int(calculatedProteins)))
+        self.valueActualTlu.setText(str(int(calculatedFats)))
+        self.valueActualWegl.setText(str(int(calculatedCarbs)))
 
 
 

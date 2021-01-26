@@ -434,7 +434,29 @@ class ui_MainWindow(object):
         self.valueActualTlu.setText(str(int(calculatedFats)))
         self.valueActualWegl.setText(str(int(calculatedCarbs)))
 
+        if calculatedCalories > int(self.valueKcal.text()):
+            self.progressKcal.setValue(int(self.valueKcal.text()))
 
+        else:
+            self.progressKcal.setValue(int(calculatedCalories))
+
+        if calculatedCarbs > int(self.valueWegl.text()):
+            self.progressWegl.setValue(int(self.valueWegl.text()))
+
+        else:
+            self.progressWegl.setValue(int(calculatedCarbs))
+
+        if calculatedFats > int(self.valueTlu.text()):
+            self.progressTlu.setValue(int(self.valueTlu.text()))
+
+        else:
+            self.progressTlu.setValue(int(calculatedFats))
+
+        if calculatedProteins > int(self.valueBia.text()):
+            self.progressBia.setValue(int(self.valueBia.text()))
+
+        else:
+            self.progressBia.setValue(int(calculatedProteins))
 
 
 def parseCsv(filename):

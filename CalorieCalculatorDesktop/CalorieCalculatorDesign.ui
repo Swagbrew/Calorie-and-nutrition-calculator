@@ -224,7 +224,7 @@
        <height>429</height>
       </rect>
      </property>
-     <widget class="QTableView" name="tableViewProducts">
+     <widget class="QTableWidget" name="tableWidgetProducts">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -238,6 +238,18 @@
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="dragDropOverwriteMode">
+       <bool>false</bool>
+      </property>
+      <property name="selectionMode">
+       <enum>QAbstractItemView::SingleSelection</enum>
+      </property>
+      <property name="selectionBehavior">
+       <enum>QAbstractItemView::SelectRows</enum>
       </property>
      </widget>
     </widget>
@@ -263,7 +275,7 @@
        <height>429</height>
       </rect>
      </property>
-     <widget class="QTableView" name="tableViewSelectedProducts">
+     <widget class="QTableWidget" name="tableWidgetSelectedProducts">
       <property name="geometry">
        <rect>
         <x>0</x>

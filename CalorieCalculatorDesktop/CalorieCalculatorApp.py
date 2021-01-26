@@ -10,7 +10,7 @@
 import pandas as pd
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import Qt, pyqtSlot
-from PyQt5.QtWidgets import QDialog, QLineEdit, QWidget
+from PyQt5.QtWidgets import QDialog, QLineEdit, QWidget, QTableView, QTableWidgetItem
 
 
 class TableModel(QtCore.QAbstractTableModel):
@@ -126,14 +126,21 @@ class ui_MainWindow(object):
         self.scrollAreaProducts_2 = QtWidgets.QWidget()
         self.scrollAreaProducts_2.setGeometry(QtCore.QRect(0, 0, 419, 429))
         self.scrollAreaProducts_2.setObjectName("scrollAreaProducts_2")
-        self.tableViewProducts = QtWidgets.QTableView(self.scrollAreaProducts_2)
-        self.tableViewProducts.setGeometry(QtCore.QRect(0, 0, 421, 431))
+        self.tableWidgetProducts = QtWidgets.QTableWidget(self.scrollAreaProducts_2)
+        self.tableWidgetProducts.setGeometry(QtCore.QRect(0, 0, 421, 431))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.tableViewProducts.sizePolicy().hasHeightForWidth())
-        self.tableViewProducts.setSizePolicy(sizePolicy)
-        self.tableViewProducts.setObjectName("tableViewProducts")
+        sizePolicy.setHeightForWidth(self.tableWidgetProducts.sizePolicy().hasHeightForWidth())
+        self.tableWidgetProducts.setSizePolicy(sizePolicy)
+        self.tableWidgetProducts.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        self.tableWidgetProducts.setDragDropOverwriteMode(False)
+        self.tableWidgetProducts.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
+        self.tableWidgetProducts.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
+        self.tableWidgetProducts.setObjectName("tableWidgetProducts")
+        self.tableWidgetProducts.setColumnCount(0)
+        self.tableWidgetProducts.setRowCount(0)
+        self.tableWidgetProducts.doubleClicked.connect(self.productsDoubleClicked)
         self.scrollAreaProducts.setWidget(self.scrollAreaProducts_2)
         self.scrollAreaSelectedProducts = QtWidgets.QScrollArea(self.centralwidget)
         self.scrollAreaSelectedProducts.setGeometry(QtCore.QRect(550, 390, 421, 431))
@@ -142,9 +149,11 @@ class ui_MainWindow(object):
         self.scrollAreaSelectedProducts_2 = QtWidgets.QWidget()
         self.scrollAreaSelectedProducts_2.setGeometry(QtCore.QRect(0, 0, 419, 429))
         self.scrollAreaSelectedProducts_2.setObjectName("scrollAreaSelectedProducts_2")
-        self.tableViewSelectedProducts = QtWidgets.QTableView(self.scrollAreaSelectedProducts_2)
-        self.tableViewSelectedProducts.setGeometry(QtCore.QRect(0, 0, 421, 431))
-        self.tableViewSelectedProducts.setObjectName("tableViewSelectedProducts")
+        self.tableWidgetSelectedProducts = QtWidgets.QTableWidget(self.scrollAreaSelectedProducts_2)
+        self.tableWidgetSelectedProducts.setGeometry(QtCore.QRect(0, 0, 421, 431))
+        self.tableWidgetSelectedProducts.setObjectName("tableWidgetSelectedProducts")
+        self.tableWidgetSelectedProducts.setColumnCount(0)
+        self.tableWidgetSelectedProducts.setRowCount(0)
         self.scrollAreaSelectedProducts.setWidget(self.scrollAreaSelectedProducts_2)
         self.comboTypes = QtWidgets.QComboBox(self.centralwidget)
         self.comboTypes.setGeometry(QtCore.QRect(30, 330, 205, 41))
@@ -296,9 +305,7 @@ class ui_MainWindow(object):
         self.buttonNewProduct.setText(_translate("MainWindow", "Dodaj nowy produkt"))
         self.labelMax.setText(_translate("MainWindow", "Maks"))
         self.labelActual.setText(_translate("MainWindow", "Aktualnie"))
-        model2 = TableModel(dfProdukty)
-        self.tableViewProducts.setModel(TableModel(pd.read_csv('Alkohole.csv', sep=';')))
-        self.tableViewSelectedProducts.setModel(model2)
+        self.loadData('Alkohole')
 
     def inputDataButton_clicked(self):
         Dialog = QWidget()
@@ -364,13 +371,30 @@ class ui_MainWindow(object):
         self.progressWegl.setMaximum(self.userCarbs)
 
     def comboTypeChanged(self):
-        rodzaje = ['Alkohole', 'Bakalie', 'Burger King', 'Drób', 'Grzyby', 'Inne', 'KFC', 'McDonald', 'Mięso', 'Nabiał',
-             'Napoje', 'Owoce', 'Pizza Hut', 'Produkty Zbożowe', 'Przyprawy', 'Ryby', 'Słodycze', 'Tłuszcze', 'Warzywa',
-             'Wędliny']
+        headers = ['Alkohole', 'Bakalie', 'Burger King', 'Drób', 'Grzyby', 'Inne', 'KFC', 'McDonald', 'Mięso', 'Nabiał',
+                   'Napoje', 'Owoce', 'Pizza Hut', 'Produkty Zbożowe', 'Przyprawy', 'Ryby', 'Słodycze', 'Tłuszcze',
+                   'Warzywa',
+                   'Wędliny']
 
-        for rodzaj in rodzaje:
-            if self.comboTypes.currentText() == rodzaj:
-                self.tableViewProducts.setModel(TableModel(pd.read_csv(rodzaj + '.csv', sep=';')))
+        for header in headers:
+            if self.comboTypes.currentText() == header:
+                self.loadData(header)
+
+    def loadData(self, filename):
+        df = parseCsv(filename + '.csv')
+        self.tableWidgetProducts.setColumnCount(len(df.columns))
+        self.tableWidgetProducts.setRowCount(len(df.index))
+
+        for i in range(len(df.index)):
+            for j in range(len(df.columns)):
+                self.tableWidgetProducts.setItem(i, j, QTableWidgetItem(str(df.iat[i, j])))
+        self.tableWidgetProducts.setHorizontalHeaderLabels(
+            ['Produkt', 'Kalorie [kcal]', 'Białko [g]', 'Tłuszcz [g]', 'Węglowodany [g]'])
+        self.tableWidgetProducts.resizeColumnsToContents()
+        self.tableWidgetProducts.resizeRowsToContents()
+
+
+
 
 def parseCsv(filename):
     df = pd.read_csv(filename, sep=';')
@@ -378,8 +402,7 @@ def parseCsv(filename):
 
 
 dfProdukty = pd.DataFrame([], columns=['Produkt', 'Kalorie [kcal]', 'Białko [g]', 'Tłuszcz [g]', 'Węglowodany [g]',
-                                           'Waga [g]'])
-
+                                       'Waga [g]'])
 
 if __name__ == "__main__":
     import sys
